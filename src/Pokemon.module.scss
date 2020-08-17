@@ -1,0 +1,68 @@
+.Navigate {
+    position: relative;}
+
+
+.Navigate-right-button {
+    float: right;
+    margin: 0px;
+}
+
+.Navigate-page-num {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrap {
+    background-color: black;
+}
+.Search {
+    margin: 0;
+    margin-right: 30px;
+    text-align: right;
+    color: white;
+    font-size: x-large;
+    text-shadow: 10px 2px 2px gray;
+    p {margin:0;}
+}
+
+.searchBox {
+    width: 300px;
+    height: 30px;
+    border: solid 1px white;
+    border-radius: 0.5;
+    background-color: initial;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 3px 1px gray;
+}
+
+.Button {
+    width: 100%;
+    text-align: center;
+}
+
+.PokemonList {
+    text-align: center;
+}
+
+.PokemonWeight {
+    margin-left: 50px;
+    display: inline;
+    color:red;
+    font-size: large;
+    font-weight: bold;
+}
+.Img {
+    display: inline;
+    text-align: left;
+}
+
+.PokemonName {
+    color: white;
+    display: inline;
+    text-align: right;
+}
+

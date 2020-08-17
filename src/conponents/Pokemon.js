@@ -1,41 +1,37 @@
 import React, { Component } from 'react';
+import styles from '../Pokemon.module.scss';
 
 class Pokemon extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            pokemon : {}
+            pokemon: {}
         }
     }
-    componentDidMount(){   //mount가 실행되고 난 직후에 실행되는 생명주기 메서드
-        fetch(this.props.pokemon.url)
-        .then((response) => response.json())
-        .then((json) => this.setState({
-            pokemon : json
-        }))    
+    async componentDidMount() {   //mount가 실행되고 난 직후에 실행되는 생명주기 메서드
+        const response = await fetch(this.props.pokemon.url);
+        const json = await response.json();
+        return( this.setState({
+                pokemon: json
+            }));
     }
     render() {
-        if(!this.state.pokemon.hasOwnProperty('id')){
+        if (!this.state.pokemon.hasOwnProperty('id')) {
             return (<div>
                 Loading...
             </div>)
         }
         return (
-          <div id='pokemon'>
-          <PokemonName name={this.state.pokemon.name}></PokemonName>
-          <h3>{this.state.pokemon.weight}</h3>
-          <img alt='사진없음' src={this.state.pokemon.sprites.front_default}/>
-        </div>
+            <div className={styles.PokemonList} id={this.state.pokemon}>
+                <img className={styles.Img} alt='사진없음' src={this.state.pokemon.sprites.front_default} />
+                <h1 className={styles.PokemonName}>{this.state.pokemon.name}</h1>
+                <p className={styles.PokemonWeight}>{this.state.pokemon.weight}</p>
+                <br/>
+            </div>
         );
     }
 }
 
-class PokemonName extends Component {
-  render() {
-    return (
-      <h1>{this.props.name}</h1>
-    );
-  }
-}
+
 
 export default Pokemon;
