@@ -11,9 +11,9 @@ class Pokemon extends Component {
     async componentDidMount() {   //mount가 실행되고 난 직후에 실행되는 생명주기 메서드
         const response = await fetch(this.props.pokemon.url);
         const json = await response.json();
-        return( this.setState({
+        this.setState({
                 pokemon: json
-            }));
+            });
     }
     render() {
         if (!this.state.pokemon.hasOwnProperty('id')) {

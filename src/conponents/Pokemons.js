@@ -17,9 +17,9 @@ class Pokemons extends Component {
    async componentWillMount() {     //mount되기전에 실행되는 생명주기 메소드
         const response = await fetch("https://pokeapi.co/api/v2/pokemon");
         const json = await response.json();
-        return( this.setState({
+        this.setState({
                 pokemons: json
-            }));
+            });
     }
     async handleClickButton(url) {
         if (!url) {
@@ -28,14 +28,13 @@ class Pokemons extends Component {
         else {
             const response = await fetch(url);
             const json = await response.json();    
-            return( this.setState({
+            this.setState({
                     pokemons: json
 
-                }));
+                });
         }
     }
     handleKeyPress = (event) => {
-        console.log(event.key);
         if (event.key === 'Enter') {
             const newPokemon = this.state.pokemons.results.find((pokemon) => pokemon.name === this.state.searchName)
     
@@ -54,7 +53,6 @@ class Pokemons extends Component {
     }
 
     handleChange = (event) => {
-        console.log(event.target.value);
         this.setState({
             searchName: event.target.value
         })
@@ -95,7 +93,7 @@ class Pokemons extends Component {
             )
         })
 
-        const searchPokemonConponent = this.state.searchedPokemon.hasOwnProperty('name')
+        const searchPokemonComponent = this.state.searchedPokemon.hasOwnProperty('name')
             ? <Pokemon pokemon={this.state.searchedPokemon}></Pokemon>
             : <div>
                 검색 된 결과가 없습니다.
@@ -104,9 +102,11 @@ class Pokemons extends Component {
         return (
             <div className={styles.wrap}>
                 <div className={styles.Search}>
-                    <p>검색: <input value={this.state.searchName} onChange={this.handleChange} onKeyPress={this.handleKeyPress} className={styles.searchBox} type='text' placeholder='search...' /></p>
+                    <p>검색: <input value={this.state.searchName} onChange={this.handleChange} 
+                    onKeyPress={this.handleKeyPress} className={styles.searchBox} 
+                    type='text' placeholder='search...' /></p>
                 </div>
-                {searchPokemonConponent}
+                {searchPokemonComponent}
                 <div>
                     {pokemonList}
                 </div>
